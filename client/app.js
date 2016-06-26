@@ -30,7 +30,8 @@ const porybox = ng.module('porybox', [
   'ngRoute'
 ]);
 
-porybox.controller('MainCtrl', function () {
+porybox.controller('MainCtrl', ['$rootScope', function ($rootScope) {
+  $rootScope.location = location;
   this.boxes = [];
   this.selected = {};
   this.init = function ({boxes, user, prefs, selectedBox}) {
@@ -42,7 +43,7 @@ porybox.controller('MainCtrl', function () {
     this.prefs = prefs;
     this.selected.box = selectedBox;
   };
-});
+}]);
 
 porybox.config(['$mdThemingProvider','$routeProvider',function(
   $mdThemingProvider,

@@ -28,6 +28,7 @@ module.exports = function (req, res, next) {
     passport.session()(req, res, function () {
       // Make the user available throughout the frontend
       res.locals.user = req.user;
+      res.locals.url = req.url;
       if (req.user) {
         Promise.all([
           User.findOne({name: req.user.name}).populate('boxes').then(BoxOrdering.getOrderedBoxList),
